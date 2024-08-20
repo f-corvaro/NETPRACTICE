@@ -50,6 +50,7 @@ The project covers a wide range of topics, including IP addressing, subnetting, 
 ### Getting Started
 
 <p align="justify">
+
 First, download the project file from Intra page or directly from [this link](https://github.com/f-corvaro/NETPRACTICE/blob/main/resources/net_practice.1.5.tgz). Next, extract the files to a folder of your choice. In this folder, open the `index.html` file. This will launch the interface in your web browser:
 
 <p>
@@ -85,6 +86,7 @@ To complete this assignment, it is strongly recommended to understand how addres
 ### Peer-Evaluations
 
 <p align="justify">
+
 Submit your assignment in your Git repository as usual. Only the work inside your repository will be evaluated during the defense. Double-check the names of your files to ensure they are correct.
 
 Since there are 10 levels in the training interface, you need to submit 10 files in your repository (one file per level). Place them at the root of your repository. Make sure to enter your login in the training interface and export a file per level using the **Get my config** button. It is crucial that you enter your login in the interface.
