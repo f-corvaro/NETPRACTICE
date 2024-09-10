@@ -28,13 +28,10 @@
   - [Types and Topologies of Computer Networks](#types-and-topologies-of-computer-networks)
   - [Reference models](#reference-models)
     - [Open Systems Interconnection (OSI) - A Theoretical Perspective](#open-systems-interconnection-osi---a-theoretical-perspective)
-    - [Physical Layer and Network Transmission Media](#physical-layer-and-network-transmission-media)
     - [TCP/IP (Transmission Control Protocol/Internet Protocol) - A Practical Approach](#tcpip-transmission-control-protocolinternet-protocol---a-practical-approach)
-    - [Network Packets](#network-packets)
-    - [Overlay Networks](#overlay-networks)
+  - [Data Sharing](#data-sharing)
     - [Network nodes](#network-nodes)
-    - [Communication protocols](#communication-protocols)
-  - [Internet Protocol (IP) Address](#internet-protocol-ip-address)
+  - [Internet protocol suite](#internet-protocol-suite)
 - [Evaluation Process](#evaluation-process)
   - [Peer-Evaluations](#peer-evaluations)
   - [Correction sheet](#correction-sheet)
@@ -120,15 +117,17 @@ You can find my NetPractice logs [here](https://github.com/f-corvaro/NETPRACTICE
 
 **Protocols:** Each node in a computer network, whether it's a computer, router, or switch, is identified by a unique network address and may also have a hostname, a memorable label typically assigned during initial setup. These nodes use protocols to send, receive, or forward information over the network. Protocols are sets of rules that dictate how data should be formatted, addressed, transmitted, and received. They also define how to handle transmission errors. Network addresses are used by these protocols, such as the Internet Protocol (IP), to locate and identify nodes. Some common protocols include TCP/IP, HTTP, and FTP.
 
-A **network address** could be an IP address like `192.168.1.1`. This is a unique identifier used by devices to communicate within a network. The **DHCP server** is responsible for assigning IP addresses to devices on a network. When a device connects to the network, it sends a request to the DHCP server, which then assigns an available IP address to the device. The DHCP server keeps track of which IP addresses are currently in use, ensuring that each device on the network gets a unique IP address. If a device disconnects from the network, its IP address is returned to the pool of available addresses and can be reassigned to a different device.
+A **network address** could be an IP address like `192.168.1.1`. This is a unique identifier used by devices to communicate within a network. The **Dynamic Host Configuration Protocol(DHCP) server**  is responsible for assigning IP addresses to devices on a network. When a device connects to the network, it sends a request to the DHCP server, which then assigns an available IP address to the device. The DHCP server keeps track of which IP addresses are currently in use, ensuring that each device on the network gets a unique IP address. If a device disconnects from the network, its IP address is returned to the pool of available addresses and can be reassigned to a different device.
 
-**IP (Internet Protocol)**: Used to identify devices on a network and to route data packets from one device to another. It is a logical address that can change.This is used to communicate between different networks, over the Internet. When you send an email or browse a website, your device uses its IP address to reach remote servers.
+**IP (Internet Protocol):**: Used to identify devices on a network and to route data packets from one device to another. It is a logical address that can change.This is used to communicate between different networks, over the Internet. When you send an email or browse a website, your device uses its IP address to reach remote servers.
 
-**MAC (Media Access Control)**: Used to identify a physical device on the local network. It is a unique and immutable physical address. It is used locally, within the same network, to communicate between devices. For example, when you connect an Ethernet cable to your computer, your network card uses its MAC address to communicate with the network switch.
+**MAC (Media Access Control):** Used to identify a physical device on the local network. It is a unique and immutable physical address. It is used locally, within the same network, to communicate between devices. For example, when you connect an Ethernet cable to your computer, your network card uses its MAC address to communicate with the network switch.
 
 A **hostname** is a more human-friendly label for a device on a network. For example, a server might have the hostname `webserver1`. This hostname can be used to access the server on a local network, provided the network's DNS (Domain Name System) is set up to associate that hostname with the server's IP address.
 
-**DNS (Domain Name System)**: It is like a phone book for the internet. Imagine having to remember the IP address (a long sequence of numbers) for every Web site you want to visit, it would be an impractical task. DNS solves this problem by allowing us to use easy-to-remember names such as `www.google.it` instead of a complicated IP address.
+**DNS (Domain Name System):** It is like a phone book for the internet. Imagine having to remember the IP address (a long sequence of numbers) for every Web site you want to visit, it would be an impractical task. DNS solves this problem by allowing us to use easy-to-remember names such as `www.google.it` instead of a complicated IP address.
+
+**HTTP (Hypertext Transfer Protocol):** is the protocol used for transmitting hypertext over the World Wide Web. It defines how messages are formatted and transmitted, and what actions web servers and browsers should take in response to various commands. For example, when you enter a URL in your browser, this actually sends an HTTP command to the web server directing it to fetch and transmit the requested web page. HTTP uses a stateless request-response model, meaning that each request from a client to a server is processed independently, without any knowledge of the requests that came before it. HTTP is not secure, so it is often replaced by HTTPS, a secure version that uses SSL/TLS protocols to encrypt the communication.
 
 </p>
 
@@ -160,6 +159,12 @@ The **topology** of a network refers to the arrangement of the network nodes and
 
 ### Reference models
 
+<p align="justify">
+
+Reference models offer a valuable framework for understanding, designing, and troubleshooting computer networks. They promote standardization, modularity, education, and problem-solving.
+
+</p>
+
 #### Open Systems Interconnection (OSI) - A Theoretical Perspective
 
 <p align="justify">
@@ -170,26 +175,7 @@ The Open Systems Interconnection (OSI) model is a reference model from the Inter
 <a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://media.fs.com/images/community/upload/kindEditor/202107/29/original-seven-layers-of-osi-model-1627523878-JYjV8oybcC.png">
 <p>
 
-The model partitions the flow of data in a communication system into seven abstraction layers to describe networked communication from the physical implementation of transmitting bits across a communications medium to the highest-level representation of data in a distributed application. Each intermediate layer serves a class of functionality to the layer above it and is served by the layer below it. Classes of functionality are implemented in software development using established communication protocols. Each layer in the OSI model has well-defined functions, and the methods of each layer communicate and interact with those of the layers immediately above and below as appropriate.
-
-</p>
-
-#### Physical Layer and Network Transmission Media
-
-<p align="justify">
-
-The **Open Systems Interconnection (OSI) Model** is a conceptual framework that standardizes the functions of a communication system into seven distinct categories, or layers. These layers, from highest to lowest, are the Application, Presentation, Session, Transport, Network, Data Link, and Physical layers. Each layer provides specific services that are used by the layers above it and relies on the services provided by the layers below it. For example, the Transport layer ensures reliable data transmission between systems, while the Network layer handles data routing across the network. Although the OSI model is largely theoretical and not all networks strictly adhere to its structure, it provides a useful way to understand and describe how different network protocols interact and co-operate to provide network services.
-
-
-
-The Physical Layer is the first and lowest layer in the OSI model. It is responsible for the actual transmission and reception of unstructured raw data between a device and a physical transmission medium. This layer defines the hardware elements involved in the network, including electrical cables, optical fibers, and wireless transmission media such as radio waves and infrared signals.
-
-The Physical Layer specifies the physical characteristics of the transmission medium, including the layout of pins, voltages, cable specifications, and radio frequencies. It also defines the data rate (the number of bits sent per second), the modulation scheme, and the signal strength. The primary function of this layer is to convert digital data into electrical, optical, or radio signals and transmit them over the physical medium.
-
-A widely adopted family of technologies that use copper and fiber media in local area networks (LANs) is collectively known as Ethernet. The media and protocol standards that enable communication between networked devices over Ethernet are defined by IEEE 802.3. Wireless LAN standards use radio waves, while others use infrared signals as a transmission medium. Power line communication uses a building's power cabling to transmit data.
-
-</p>
-
+Each intermediate layer serves a class of functionality to the layer above it and is served by the layer below it. Classes of functionality are implemented in software development using established communication protocols. Each layer in the OSI model has well-defined functions, and the methods of each layer communicate and interact with those of the layers immediately above and below as appropriate. Although the OSI model is largely theoretical and not all networks strictly adhere to its structure, it provides a useful way to understand and describe how different network protocols interact and co-operate to provide network services.
 
 </p>
 
@@ -197,81 +183,60 @@ A widely adopted family of technologies that use copper and fiber media in local
 
 <p align="justify">
 
+The **TCP/IP (Transmission Control Protocol/Internet Protocol) Model**, also known as Internet Protocol suite, is a more practical counterpart to the OSI model. It is the foundation upon which the internet and most commercial networks operate. The TCP/IP model consists of four layers: the Network Interface, Internet, Transport, and Application layers. The Network Interface layer corresponds to the combination of the Physical and Data Link layers in the OSI model. The Internet layer is equivalent to the Network layer in the OSI model, handling IP addressing and routing. The Transport layer is responsible for reliable data transmission, similar to its OSI counterpart. Finally, the Application layer of the TCP/IP model combines the functions of the Session, Presentation, and Application layers in the OSI model. It handles high-level protocols like HTTP and FTP, enabling user applications to interact with the network. It is named after the two most important protocols in the suite: the Transmission Control Protocol (TCP) and the Internet Protocol (IP). TCP/IP provides end-to-end connectivity specifying how data should be packetized, addressed, transmitted, routed, and received at the destination.
 
+<p align="center">
+<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://media.geeksforgeeks.org/wp-content/uploads/20230417045622/OSI-vs-TCP-vs-Hybrid-2.webp">
+<p>
 
 </p>
 
-#### Network Packets
+### Data Sharing
 
 <p align="justify">
 
-Most modern computer networks use protocols based on packet-mode transmission. A network packet is a formatted unit of data carried by a packet-switched network. Packet switching is a method of grouping data into short messages in a fixed format. Packets consist of a header and a payload. The header, placed at the beginning of the block of data, contains information about the source and destination addresses, packet number, and error-checking data. The payload is the actual intended message. Headers contain metadata essential for payload delivery, while the payload is extracted and used by an operating system, application software, or higher-layer protocols.
+In a computer network, data is shared using a process called **packet switching**. The data to be sent is broken down into small units, called packets, in a fixed format. Packets, also known as **Datagrams**, consist of a header and a payload section. The header, placed at the beginning of the block of data, contains information about the source and destination addresses, packet number, and error-checking data. The payload is the actual intended message. Headers contain metadata essential for payload delivery, while the payload is extracted and used by an operating system, application software, or higher-layer protocols.
 
 <p align="center">
 <a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Packet_Switching.gif">
-<p>
-
-<p align="center">
 <a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://upload.wikimedia.org/wikipedia/commons/3/39/Network_packet.jpg">
 <p>
 
+The packets are then sent over the network from the source node to the destination node. Along the way, they may pass through several intermediate nodes, such as routers and switches, which read the packet headers to determine the best path to the destination. This process is known as routing. Once all the packets reach the destination, they are reassembled in the correct order to form the original data. If any packets are lost or damaged during transmission, the error-checking data in the packet headers can be used to detect this and request retransmission of the affected packets. This ensures reliable data transmission over the network. The physical link technologies of packet networks typically limit the size of packets to a certain maximum transmission unit (MTU).
+
 With packets, the bandwidth (the maximum rate of data transfer across a given path) of the transmission medium can be better shared among users than if the network were circuit-switched. When one user is not sending packets, the link can be filled with packets from other users, allowing the cost to be shared with relatively little interference, provided the link is not overused. Often, the route a packet needs to take through a network is not immediately available. In such cases, the packet is queued and waits until a link is free.
 
-The physical link technologies of packet networks typically limit the size of packets to a certain maximum transmission unit (MTU). A longer message may be fragmented before it is transferred, and once the packets arrive, they are reassembled to reconstruct the original message.
-
 </p>
-
-#### Overlay Networks
-
-<p align="justify">
-
-An overlay network is a virtual network that is constructed on top of an existing network. Nodes in the overlay network are interconnected by virtual or logical links, each of which corresponds to a path that may traverse multiple physical links in the underlying network. The topology of the overlay network often differs significantly from that of the underlying network. For instance, many peer-to-peer networks are overlay networks, organized as nodes within a virtual system of links that operate on top of the Internet.
-
-Overlay networks have been utilized since the early days of networking, when computers were connected via telephone lines using modems, even before the advent of dedicated data networks.
-
-A prominent example of an overlay network is the Internet itself. Initially, the Internet was built as an overlay on the telephone network. Even today, each Internet node can communicate with virtually any other node through an underlying mesh of sub-networks with diverse topologies and technologies. Address resolution and routing facilitate the mapping of a fully connected IP overlay network to its underlying network. While the overlay network does not control how packets are routed in the underlying network between two overlay nodes, it can manage the sequence of overlay nodes that a message traverses before reaching its destination.
-
-</p>
-
 
 #### Network nodes
 
 <p align="justify">
 
-Apart from any physical transmission media, networks are built from additional basic system building blocks, such as network interface controllers, repeaters, hubs, bridges, switches, routers, modems, and firewalls. Any particular piece of equipment will frequently contain multiple building blocks and so may perform multiple functions.
+Each node in a network has a unique network address, which can be used to send data to that node. Nodes can be connected to each other in various ways, forming different network topologies. The way nodes are connected and interact with each other determines many properties of the network, such as its speed, reliability, and resilience to faults.
 
-**Network Interfaces:** A network interface controller (NIC) is computer hardware that connects the computer to the network media and has the ability to process low-level network information. In Ethernet networks, each NIC has a unique Media Access Control (MAC) address—usually stored in the controller's permanent memory. To avoid address conflicts between network devices, the Institute of Electrical and Electronics Engineers (IEEE) maintains and administers MAC address uniqueness. The size of an Ethernet MAC address is six octets. The three most significant octets are reserved to identify NIC manufacturers. These manufacturers, using only their assigned prefixes, uniquely assign the three least-significant octets of every Ethernet interface they produce.
+**Modem:** A modem (short for modulator-demodulator) is a device that converts data between digital formats used by computers and analog formats used by older telephone lines or radio signals. In a home network, the modem connects to the internet service provider's network, allowing devices in the home to access the internet.
 
-**Repeaters and Hubs:** A repeater is an electronic device that receives a network signal, cleans it of unnecessary noise and regenerates it. The signal is retransmitted at a higher power level, or to the other side of obstruction so that the signal can cover longer distances without degradation. In most twisted-pair Ethernet configurations, repeaters are required for cable that runs longer than 100 meters. With fiber optics, repeaters can be tens or even hundreds of kilometers apart. Repeaters work on the physical layer of the OSI model but still require a small amount of time to regenerate the signal. This can cause a propagation delay that affects network performance and may affect proper function. As a result, many network architectures limit the number of repeaters used in a network. An Ethernet repeater with multiple ports is known as an Ethernet hub. In addition to reconditioning and distributing network signals, a repeater hub assists with collision detection and fault isolation for the network. Hubs and repeaters in LANs have been largely obsoleted by modern network switches.
+**Router:** A router is a device that forwards data packets between computer networks, creating an overlay internetwork. Routers perform the traffic directing functions on the internet; data sent through the internet, such as a web page or email, is in the form of data packets. A packet is typically forwarded from one router to another through the networks that constitute the internet work until it reaches its destination node.
 
-**Bridges and Switches:** Network bridges and network switches are distinct from a hub in that they only forward frames to the ports involved in the communication whereas a hub forwards to all ports. Bridges only have two ports but a switch can be thought of as a multi-port bridge. Switches normally have numerous ports, facilitating a star topology for devices, and for cascading additional switches. Bridges and switches operate at the data link layer (layer 2) of the OSI model and bridge traffic between two or more network segments to form a single local network. Both are devices that forward frames of data between ports based on the destination MAC address in each frame. They learn the association of physical ports to MAC addresses by examining the source addresses of received frames and only forward the frame when necessary. If an unknown destination MAC is targeted, the device broadcasts the request to all ports except the source, and discovers the location from the reply. Bridges and switches divide the network's collision domain but maintain a single broadcast domain. Network segmentation through bridging and switching helps break down a large, congested network into an aggregation of smaller, more efficient networks.
+**Bridges:** A network bridge is a computer networking device that creates a single aggregate network from multiple communication networks or network segments. This function is called network bridging. Bridging is distinct from routing, which allows multiple different networks to communicate independently while remaining separate.
 
-**Routers:** A router is an internetworking device that forwards packets between networks by processing the addressing or routing information included in the packet. The routing information is often processed in conjunction with the routing table. A router uses its routing table to determine where to forward packets and does not require broadcasting packets which is inefficient for very big networks.
+**Switches:** A network switch is a multiport network bridge that uses MAC addresses to forward data at the data link layer (layer 2) of the OSI model. Some switches can also forward data at the network layer (layer 3) by additionally incorporating routing functionality. Such switches are commonly known as layer-3 switches or multilayer switches.
 
-**Modems:** Modems (modulator-demodulator) are used to connect network nodes via wire not originally designed for digital network traffic, or for wireless. To do this one or more carrier signals are modulated by the digital signal to produce an analog signal that can be tailored to give the required properties for transmission. Early modems modulated audio signals sent over a standard voice telephone line. 
+**Firewall:** A firewall is a network security device that monitors incoming and outgoing network traffic and decides whether to allow or block specific traffic based on a defined set of security rules. Firewalls have been a first line of defense in network security for over 25 years. They establish a barrier between secured and controlled internal networks that can be trusted and untrusted outside networks, such as the internet.
 
-**Firewalls:** A firewall is a network device or software for controlling network security and access rules. Firewalls are inserted in connections between secure internal networks and potentially insecure external networks such as the Internet. Firewalls are typically configured to reject access requests from unrecognized sources while allowing actions from recognized ones. The vital role firewalls play in network security grows in parallel with the constant increase in cyber attacks.
+**Network Interfaces:** A network interface is the point of interconnection between a computer and a private or public network. A network interface is generally a network interface card (NIC) but does not have to have a physical form. Instead, the network interface can exist in software or can be a combination of hardware and software.
+
+**Repeaters:** A repeater is an electronic device that receives a signal and retransmits it at a higher level or higher power, or onto the other side of an obstruction, so that the signal can cover longer distances. In a wired network, a repeater can receive a signal on an electromagnetic or optical transmission medium, amplify it and retransmit it. Repeaters overcome the attenuation caused by free-space electromagnetic-field divergence or cable loss.
+
+**Hubs:** A network hub is a node that broadcasts data to every computer or Ethernet-based device connected to it. A hub is less sophisticated than a switch, the latter of which can isolate data transmissions to specific devices. The hub does not manage any of the traffic that comes through it; any packet of data entering any port is rebroadcast out on every other port. In a hub, a frame is passed along or "broadcast" to every one of its ports. It does not matter that the frame is only destined for one port. The hub has no way of distinguishing which port a frame should be sent to.
 
 </p>
 
-#### Communication protocols
+### Internet protocol suite
 
 <p align="justify">
 
-A communication protocol is a set of rules for exchanging information over a network. They may be connection-oriented or connectionless, they may use circuit mode or packet switching, and they may use hierarchical addressing or flat addressing. In a protocol stack, often constructed per the OSI model, communications functions are divided up into protocol layers, where each layer leverages the services of the layer below it until the lowest layer controls the hardware that sends information across the media. The use of protocol layering is ubiquitous across the field of computer networking. An important example of a protocol stack is HTTP (the World Wide Web protocol) running over TCP over IP (the Internet protocols) over IEEE 802.11 (the Wi-Fi protocol). This stack is used between the wireless router and the home user's personal computer when the user is surfing the web.
 
-</p>
-
-### Internet Protocol (IP) Address
-
-<p align="justify">
-
-An Internet Protocol address (IP address) is a numerical label (e.g. 192.0.2.1) that is assigned to a device connected to a computer network that uses the Internet Protocol for communication. IP addresses serve two main functions: network interface identification, and location addressing.
-
-The Internet Protocol (IP) is the network layer communications protocol in the Internet protocol suite for relaying datagrams across network boundaries. 
-
-
-</p>
 
 </p>
 
@@ -330,11 +295,9 @@ scale=2
 - [Packet Switching - Wikipedia](https://en.wikipedia.org/wiki/Packet_switching)
 - [Osi Model - Wikipedia](https://en.wikipedia.org/wiki/OSI_model)
 - [Osi Model - bmc blog](https://www.bmc.com/blogs/osi-model-7-layers/)
+- [Internet protocol suite - Wikipedia](https://en.wikipedia.org/wiki/Internet_protocol_suite)
 - [Internet Protocol (IP) Address - Wikipedia](https://en.wikipedia.org/wiki/IP_address)
-- [](https://en.wikipedia.org/wiki/Internet_Protocol)
-- [](https://en.wikipedia.org/wiki/Network_layer)
-
-- [](https://en.wikipedia.org/wiki/Datagram)
+- [Datagram - Wikipedia](https://en.wikipedia.org/wiki/Datagram)
 
 
 - [1](https://medium.com/@imyzf/netpractice-2d2b39b6cf0a)
