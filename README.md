@@ -23,12 +23,15 @@
   - [Getting Started](#getting-started)
   - [Training Levels](#training-levels)
 - [Theoretical Background](#theoretical-background)
-  - [Computer Networks](#computer-networks)
-    - [Network Packets](#network-packets)
-    - [Network Topology and Its Impact](#network-topology-and-its-impact)
-    - [Overlay Networks](#overlay-networks)
-    - [OSI Model](#osi-model)
+  - [Fundamentals of Computer Networks](#fundamentals-of-computer-networks)
+  - [Basic Operations on Computer Networks](#basic-operations-on-computer-networks)
+  - [Types and Topologies of Computer Networks](#types-and-topologies-of-computer-networks)
+  - [Reference models](#reference-models)
+    - [Open Systems Interconnection (OSI) - A Theoretical Perspective](#open-systems-interconnection-osi---a-theoretical-perspective)
     - [Physical Layer and Network Transmission Media](#physical-layer-and-network-transmission-media)
+    - [TCP/IP (Transmission Control Protocol/Internet Protocol) - A Practical Approach](#tcpip-transmission-control-protocolinternet-protocol---a-practical-approach)
+    - [Network Packets](#network-packets)
+    - [Overlay Networks](#overlay-networks)
     - [Network nodes](#network-nodes)
     - [Communication protocols](#communication-protocols)
   - [Internet Protocol (IP) Address](#internet-protocol-ip-address)
@@ -105,17 +108,96 @@ You can find my NetPractice logs [here](https://github.com/f-corvaro/NETPRACTICE
 
 <p align="justify">
 
-First, we need to understand how to connect multiple computers.
-
-### Computer Networks
+### Fundamentals of Computer Networks
 
 <p align="justify">
 
-A computer network is a collection of interconnected devices that share resources and communicate with each other using common communication protocols. These devices, or nodes, can include personal computers, servers, and other specialized or general-purpose hosts. The interconnections between nodes are established through various telecommunication technologies, including wired (e.g., Ethernet or coaxial cables), optical (e.g., fiber optics), and wireless (e.g., radio waves) methods, which can be organized into different network topologies.
+**Node:** In the context of computer networks, a node is any device that can send, receive, or forward information over the network. This includes computers, routers, and switches. 
 
-Each node in a computer network is identified by a unique network address and may also have a hostname, which serves as a memorable label. Hostnames are typically assigned during the initial setup and rarely change, while network addresses are used by communication protocols, such as the Internet Protocol (IP), to locate and identify nodes.
+**Links (connection between nodes):** Nodes are connected to each other through various telecommunication technologies (phisical mediums) including wired (e.g., Ethernet or coaxial cables), optical (e.g., fiber optics), and wireless (e.g., radio waves) methods. The process include these steps: **Digitisation**, **Modulation**, **Transmission** and **Demodulation & Decoding**. The first step is the digitisation of data. This means converting information, which can be text, images, video or any other type of data, into a sequence of bits (0 and 1). Each bit represents an electrical state (on or off) or a light pulse. Once digitised, the data is modulated on a carrier signal. This carrier signal can be an electromagnetic wave (used in wireless transmissions) or a beam of light (used in fibre optics). Modulation consists of modifying certain characteristics of the carrier signal, such as amplitude, frequency or phase, so that digital data ‘travels over’ it. The modulated signal is then transmitted through the physical medium (cables, optical fibres, radio waves). Upon reception, the signal is demodulated to extract the original digital data. Subsequently, this data is decoded and made comprehensible to the receiving device.
 
-Computer networks enable a wide range of applications and services, including access to the World Wide Web, digital video and audio streaming, shared use of application and storage servers, printers, and fax machines, as well as email and instant messaging.
+**Computer Networks:** The connections between nodes form the network's structure, a collection of interconnected devices that share resources and communicate with each other using common communication protocols. Computer networks enable a wide range of applications and services, including access to the World Wide Web, digital video and audio streaming, shared use of application and storage servers, printers, and fax machines, as well as email and instant messaging.
+
+**Protocols:** Each node in a computer network, whether it's a computer, router, or switch, is identified by a unique network address and may also have a hostname, a memorable label typically assigned during initial setup. These nodes use protocols to send, receive, or forward information over the network. Protocols are sets of rules that dictate how data should be formatted, addressed, transmitted, and received. They also define how to handle transmission errors. Network addresses are used by these protocols, such as the Internet Protocol (IP), to locate and identify nodes. Some common protocols include TCP/IP, HTTP, and FTP.
+
+A **network address** could be an IP address like `192.168.1.1`. This is a unique identifier used by devices to communicate within a network. The **DHCP server** is responsible for assigning IP addresses to devices on a network. When a device connects to the network, it sends a request to the DHCP server, which then assigns an available IP address to the device. The DHCP server keeps track of which IP addresses are currently in use, ensuring that each device on the network gets a unique IP address. If a device disconnects from the network, its IP address is returned to the pool of available addresses and can be reassigned to a different device.
+
+**IP (Internet Protocol)**: Used to identify devices on a network and to route data packets from one device to another. It is a logical address that can change.This is used to communicate between different networks, over the Internet. When you send an email or browse a website, your device uses its IP address to reach remote servers.
+
+**MAC (Media Access Control)**: Used to identify a physical device on the local network. It is a unique and immutable physical address. It is used locally, within the same network, to communicate between devices. For example, when you connect an Ethernet cable to your computer, your network card uses its MAC address to communicate with the network switch.
+
+A **hostname** is a more human-friendly label for a device on a network. For example, a server might have the hostname `webserver1`. This hostname can be used to access the server on a local network, provided the network's DNS (Domain Name System) is set up to associate that hostname with the server's IP address.
+
+**DNS (Domain Name System)**: It is like a phone book for the internet. Imagine having to remember the IP address (a long sequence of numbers) for every Web site you want to visit, it would be an impractical task. DNS solves this problem by allowing us to use easy-to-remember names such as `www.google.it` instead of a complicated IP address.
+
+</p>
+
+### Basic Operations on Computer Networks
+
+<p align="justify">
+
+**Addressing** is the process of assigning a unique identifier, such as an IP address, to each device (node). This allows for precise communication between specific devices. Data is sent across the network in small units called **packets**. Each packet contains a portion of the data being sent, along with metadata such as the source and destination addresses. **Routing** is the process of determining the best path for these packets to take from the source to the destination. This is typically handled by devices called routers, which analyze the network's topology and traffic conditions to make this decision. Finally, the **Domain Name System (DNS)** translates human-friendly domain names (like `www.google.com`) into the IP addresses that networks use to route traffic. This makes it easier for users to access websites without having to remember complex IP addresses.
+
+</p>
+
+### Types and Topologies of Computer Networks
+
+<p align="justify">
+
+Computer networks can be categorized based on their size and the geographical area they cover. **Local Area Networks (LANs)** are networks that connect devices over a relatively short distance, such as within a building or campus. **Wide Area Networks (WANs)** cover larger geographical areas, often spanning cities, countries, or even the globe. **Metropolitan Area Networks (MANs)** are larger than LANs but smaller than WANs, typically covering a city or suburb. **Wireless Local Area Networks (WLANs)** are similar to LANs, but use wireless communication methods instead of traditional wired connections. **Storage Area Networks (SANs)** are networks designed to provide access to consolidated, block-level data storage. **Controller Area Networks (CANs)** are vehicle bus standards designed to allow microcontrollers and devices to communicate with each other within a vehicle without a host computer.
+
+<p align="center">
+<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://informationq.com/wp-content/uploads/2016/09/Type-of-Computer-Network.jpg">
+<p>
+
+The **topology** of a network refers to the arrangement of the network nodes and the physical or logical connections between them. Common topologies include the bus, ring, star, mesh, and tree topologies. Each has its own advantages and disadvantages in terms of complexity, robustness, and cost. In general, the more interconnections there are, the more robust the network is; however, this also increases the cost and complexity of installation. The physical layout of the nodes in a network may not necessarily reflect the logical network topology. 
+
+<p align="center">
+<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://systemzone.net/wp-content/uploads/2017/09/network-topology.png">
+<p>
+
+</p>
+
+### Reference models
+
+#### Open Systems Interconnection (OSI) - A Theoretical Perspective
+
+<p align="justify">
+
+The Open Systems Interconnection (OSI) model is a reference model from the International Organization for Standardization (ISO) that "provides a common basis for the coordination of standards development for the purpose of systems interconnection." In the OSI reference model, communications between systems are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.
+
+<p align="center">
+<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://media.fs.com/images/community/upload/kindEditor/202107/29/original-seven-layers-of-osi-model-1627523878-JYjV8oybcC.png">
+<p>
+
+The model partitions the flow of data in a communication system into seven abstraction layers to describe networked communication from the physical implementation of transmitting bits across a communications medium to the highest-level representation of data in a distributed application. Each intermediate layer serves a class of functionality to the layer above it and is served by the layer below it. Classes of functionality are implemented in software development using established communication protocols. Each layer in the OSI model has well-defined functions, and the methods of each layer communicate and interact with those of the layers immediately above and below as appropriate.
+
+</p>
+
+#### Physical Layer and Network Transmission Media
+
+<p align="justify">
+
+The **Open Systems Interconnection (OSI) Model** is a conceptual framework that standardizes the functions of a communication system into seven distinct categories, or layers. These layers, from highest to lowest, are the Application, Presentation, Session, Transport, Network, Data Link, and Physical layers. Each layer provides specific services that are used by the layers above it and relies on the services provided by the layers below it. For example, the Transport layer ensures reliable data transmission between systems, while the Network layer handles data routing across the network. Although the OSI model is largely theoretical and not all networks strictly adhere to its structure, it provides a useful way to understand and describe how different network protocols interact and co-operate to provide network services.
+
+
+
+The Physical Layer is the first and lowest layer in the OSI model. It is responsible for the actual transmission and reception of unstructured raw data between a device and a physical transmission medium. This layer defines the hardware elements involved in the network, including electrical cables, optical fibers, and wireless transmission media such as radio waves and infrared signals.
+
+The Physical Layer specifies the physical characteristics of the transmission medium, including the layout of pins, voltages, cable specifications, and radio frequencies. It also defines the data rate (the number of bits sent per second), the modulation scheme, and the signal strength. The primary function of this layer is to convert digital data into electrical, optical, or radio signals and transmit them over the physical medium.
+
+A widely adopted family of technologies that use copper and fiber media in local area networks (LANs) is collectively known as Ethernet. The media and protocol standards that enable communication between networked devices over Ethernet are defined by IEEE 802.3. Wireless LAN standards use radio waves, while others use infrared signals as a transmission medium. Power line communication uses a building's power cabling to transmit data.
+
+</p>
+
+
+</p>
+
+#### TCP/IP (Transmission Control Protocol/Internet Protocol) - A Practical Approach
+
+<p align="justify">
+
+
 
 </p>
 
@@ -139,20 +221,6 @@ The physical link technologies of packet networks typically limit the size of pa
 
 </p>
 
-#### Network Topology and Its Impact
-
-<p align="justify">
-
-The physical or geographic locations of network nodes and links generally have relatively little effect on a network, but the topology of interconnections can significantly impact its throughput and reliability. Network topology refers to the arrangement of different elements (links, nodes, etc.) in a computer network. With many technologies, such as bus or star networks, a single failure can cause the entire network to fail. In general, the more interconnections there are, the more robust the network is; however, this also increases the cost and complexity of installation.
-
-<p align="center">
-<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://upload.wikimedia.org/wikipedia/commons/9/97/NetworkTopologies.svg">
-<p>
-
-The physical layout of the nodes in a network may not necessarily reflect the logical network topology. For example, with Fiber Distributed Data Interface (FDDI), the logical network topology is a ring, but the physical topology is often a star because all neighboring connections can be routed via a central physical location. While the physical layout is not completely irrelevant, common ducting and equipment locations can represent single points of failure due to issues like fires, power failures, and flooding.
-
-</p>
-
 #### Overlay Networks
 
 <p align="justify">
@@ -165,31 +233,6 @@ A prominent example of an overlay network is the Internet itself. Initially, the
 
 </p>
 
-#### OSI Model
-
-<p align="justify">
-
-The Open Systems Interconnection (OSI) model is a reference model from the International Organization for Standardization (ISO) that "provides a common basis for the coordination of standards development for the purpose of systems interconnection." In the OSI reference model, communications between systems are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.
-
-<p align="center">
-<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://media.fs.com/images/community/upload/kindEditor/202107/29/original-seven-layers-of-osi-model-1627523878-JYjV8oybcC.png">
-<p>
-
-The model partitions the flow of data in a communication system into seven abstraction layers to describe networked communication from the physical implementation of transmitting bits across a communications medium to the highest-level representation of data in a distributed application. Each intermediate layer serves a class of functionality to the layer above it and is served by the layer below it. Classes of functionality are implemented in software development using established communication protocols. Each layer in the OSI model has well-defined functions, and the methods of each layer communicate and interact with those of the layers immediately above and below as appropriate.
-
-</p>
-
-#### Physical Layer and Network Transmission Media
-
-<p align="justify">
-
-The Physical Layer is the first and lowest layer in the OSI model. It is responsible for the actual transmission and reception of unstructured raw data between a device and a physical transmission medium. This layer defines the hardware elements involved in the network, including electrical cables, optical fibers, and wireless transmission media such as radio waves and infrared signals.
-
-The Physical Layer specifies the physical characteristics of the transmission medium, including the layout of pins, voltages, cable specifications, and radio frequencies. It also defines the data rate (the number of bits sent per second), the modulation scheme, and the signal strength. The primary function of this layer is to convert digital data into electrical, optical, or radio signals and transmit them over the physical medium.
-
-A widely adopted family of technologies that use copper and fiber media in local area networks (LANs) is collectively known as Ethernet. The media and protocol standards that enable communication between networked devices over Ethernet are defined by IEEE 802.3. Wireless LAN standards use radio waves, while others use infrared signals as a transmission medium. Power line communication uses a building's power cabling to transmit data.
-
-</p>
 
 #### Network nodes
 
