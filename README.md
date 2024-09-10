@@ -23,6 +23,7 @@
   - [Getting Started](#getting-started)
   - [Training Levels](#training-levels)
 - [Theoretical Background](#theoretical-background)
+  - [Quick Overview](#quick-overview)
   - [Fundamentals of Computer Networks](#fundamentals-of-computer-networks)
   - [Basic Operations on Computer Networks](#basic-operations-on-computer-networks)
   - [Types and Topologies of Computer Networks](#types-and-topologies-of-computer-networks)
@@ -31,7 +32,6 @@
     - [TCP/IP (Transmission Control Protocol/Internet Protocol) - A Practical Approach](#tcpip-transmission-control-protocolinternet-protocol---a-practical-approach)
   - [Data Sharing](#data-sharing)
     - [Network nodes](#network-nodes)
-  - [Internet protocol suite](#internet-protocol-suite)
 - [Evaluation Process](#evaluation-process)
   - [Peer-Evaluations](#peer-evaluations)
   - [Correction sheet](#correction-sheet)
@@ -105,6 +105,22 @@ You can find my NetPractice logs [here](https://github.com/f-corvaro/NETPRACTICE
 
 <p align="justify">
 
+### Quick Overview
+
+The Internet, a vast network of networks, comprises millions of both public and private networks spanning commercial, academic, and governmental sectors. Individuals typically access the Internet via Internet Service Providers (ISPs), which themselves form networks connecting homes, businesses, and other entities within specific geographic areas. These ISPs also connect to higher-level ISPs to gain broader Internet access, creating a hierarchical structure with a handful of level 1 ISPs at the top and hundreds of thousands of lower-level ISPs at the base. The coverage of ISPs can range from global to local scales. Large content providers, such as Google, often establish their own networks and connect directly to lower-level ISPs to reduce costs and enhance connection speeds for their users.
+
+<p align="center">
+<a href="https://www.codequoi.com/en/internet-layered-network-architecture/"><img width="650" src="https://www.codequoi.com/images/internet-architecture/internet_devices_routers_switches_hosts_en.drawio.png">
+<p>
+
+In any network, including the Internet, a host is any connected system. Hosts can be clients like desktops, laptops, smartphones, or servers that store and distribute data. Data sent from one host to another is divided into packets, which are reassembled at the destination.
+
+Hosts connect via various physical media (coaxial cables, copper cables, optical fibers, radio waves) and data packets often pass through switches and routers. Switches manage data traffic within a network, while routers interface between different networks or sub-networks.
+
+Every host, router, and switch is a network node. The sequence of nodes a packet passes through to reach its destination is its route.
+
+</p>
+
 ### Fundamentals of Computer Networks
 
 <p align="justify">
@@ -177,13 +193,61 @@ The Open Systems Interconnection (OSI) model is a reference model from the Inter
 
 Each intermediate layer serves a class of functionality to the layer above it and is served by the layer below it. Classes of functionality are implemented in software development using established communication protocols. Each layer in the OSI model has well-defined functions, and the methods of each layer communicate and interact with those of the layers immediately above and below as appropriate. Although the OSI model is largely theoretical and not all networks strictly adhere to its structure, it provides a useful way to understand and describe how different network protocols interact and co-operate to provide network services.
 
+***Example:***
+
+In this example, we simplify the model by considering only five layers. This approach makes it easier to understand how the model works. We've combined the Presentation, Session, and Transport layers into a single layer, referred to as the Transport layer.
+
+<p align="center">
+<a href="https://www.codequoi.com/en/internet-layered-network-architecture/"><img width="650" src="https://www.codequoi.com/images/internet-architecture/internet-layered-architecture-en.drawio.png">
+<p>
+
+The **application layer**, the highest layer in the network protocol stack, hosts network applications and their associated protocols. These applications and protocols, which are the very reason for the existence of computer networks, are diverse and continually evolving. The table below showcases only a subset of the most prevalent applications and protocols:
+
+| Application                                   | Protocol(s)       |
+| --------------------------------------------- | ----------------- |
+| Request and transfer Web pages                | HTTP, HTTPS       |
+| File transfer                                 | FTP               |
+| Email transfer and access                     | SMTP, IMAP        |
+| Shell remote access with secure connection    | SSH               |
+| Instant message transfer                      | IRC, XMPP         |
+| Clock synchronization to local time           | NTP               |
+| Internet domain name translation into IP      | DNS               |
+| Streaming audio/video                         | RMTP, HLS, SRT    |
+| Peer-to-peer file sharing                     | BitTorrent, eDonkey|
+
+An application-layer protocol facilitates information exchange between applications on different hosts. Packets of the application layer are known as “messages”.
+
+The **transport layer** of the Internet plays a crucial role in facilitating communication between applications on different hosts. It conveys application-layer messages between application endpoints. The two primary protocols at this layer are TCP and UDP.
+
+TCP is a connection-oriented, reliable protocol. It establishes a connection before data transmission and ensures data is received correctly, resending if necessary. It controls data flow, adjusts transmission speed during network congestion, and breaks down long data streams into smaller segments. TCP is typically used by file transfer, message transfer, web page transfer, and streaming services like YouTube and Netflix.
+
+On the other hand, UDP is a simpler, connection-less protocol. It doesn't regulate traffic or transmission rate and doesn't guarantee message delivery. However, its simplicity is beneficial for quick transmission of small data amounts, such as server-to-client data or situations where data loss is acceptable over retransmission. DNS, voice over IP, and online gaming typically use UDP.
+
+In the transport layer, data packets are referred to as "segments".
+
+The **network layer** of the Internet is tasked with routing "datagrams" (packets at this layer) from one host to another. The Internet Protocol (IP) is the primary protocol at this layer. It's essential for any host wishing to connect to the Internet, defining the datagram structure and unique IP addresses for each host. Two main versions exist: IPv4 and IPv6, performing similar functions with slight differences.
+
+Other smaller routing protocols, such as RIP, OSPF, IS-IS, and BGP, work alongside IP, primarily determining the datagram's path to its destination. The ICMP protocol communicates information or error messages, like when a service or host is unreachable.
+
+Despite the presence of other protocols, the network layer is often simply referred to as IP, highlighting its central role in holding the Internet together.
+
+The **link layer**'s primary function is to transport a datagram from one network node to the next. It works closely with the network layer, receiving datagrams from it, moving them to the next node, and then passing them back to the network layer.
+
+Link layer protocols are largely dependent on the physical medium between two nodes. These protocols include Ethernet, WiFi, DOCSIS, and PPP. Some ensure reliable packet delivery, while others do not.
+
+A datagram often traverses multiple physical media, requiring different link-layer protocols. For instance, a datagram might be handled by Ethernet on the first link, PPP on the next three, and WiFi on the final link.
+
+At the link layer, data packets are referred to as "frames".
+
+The **physical layer**, the base layer of the network, is responsible for transmitting individual bits of the link-layer frames from one node to another. The protocols at this layer are intrinsically tied to the physical medium used for transmission and the link-layer protocols above it. For instance, Ethernet employs various physical-layer protocols, each tailored for a specific medium - twisted-pair copper wire, coaxial cable, optic fiber, and so on. Each protocol has a unique method for transmitting a bit across the link.
+
 </p>
 
 #### TCP/IP (Transmission Control Protocol/Internet Protocol) - A Practical Approach
 
 <p align="justify">
 
-The **TCP/IP (Transmission Control Protocol/Internet Protocol) Model**, also known as Internet Protocol suite, is a more practical counterpart to the OSI model. It is the foundation upon which the internet and most commercial networks operate. The TCP/IP model consists of four layers: the Network Interface, Internet, Transport, and Application layers. The Network Interface layer corresponds to the combination of the Physical and Data Link layers in the OSI model. The Internet layer is equivalent to the Network layer in the OSI model, handling IP addressing and routing. The Transport layer is responsible for reliable data transmission, similar to its OSI counterpart. Finally, the Application layer of the TCP/IP model combines the functions of the Session, Presentation, and Application layers in the OSI model. It handles high-level protocols like HTTP and FTP, enabling user applications to interact with the network. It is named after the two most important protocols in the suite: the Transmission Control Protocol (TCP) and the Internet Protocol (IP). TCP/IP provides end-to-end connectivity specifying how data should be packetized, addressed, transmitted, routed, and received at the destination.
+The **TCP/IP (Transmission Control Protocol/Internet Protocol) Model**, also known as **Internet Protocol suite**, is a more practical counterpart to the OSI model. It is the foundation upon which the internet and most commercial networks operate. The TCP/IP model consists of four layers: the Network Interface, Internet, Transport, and Application layers. The Network Interface layer corresponds to the combination of the Physical and Data Link layers in the OSI model. The Internet layer is equivalent to the Network layer in the OSI model, handling IP addressing and routing. The Transport layer is responsible for reliable data transmission, similar to its OSI counterpart. Finally, the Application layer of the TCP/IP model combines the functions of the Session, Presentation, and Application layers in the OSI model. It handles high-level protocols like HTTP and FTP, enabling user applications to interact with the network. It is named after the two most important protocols in the suite: the Transmission Control Protocol (TCP) and the Internet Protocol (IP). TCP/IP provides end-to-end connectivity specifying how data should be packetized, addressed, transmitted, routed, and received at the destination.
 
 <p align="center">
 <a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://media.geeksforgeeks.org/wp-content/uploads/20230417045622/OSI-vs-TCP-vs-Hybrid-2.webp">
@@ -232,13 +296,6 @@ Each node in a network has a unique network address, which can be used to send d
 
 </p>
 
-### Internet protocol suite
-
-<p align="justify">
-
-
-
-</p>
 
 ## Evaluation Process
 
@@ -291,22 +348,24 @@ scale=2
 
 ## References
 
-- [Computer Network - Wikipedia](https://en.wikipedia.org/wiki/Computer_network)
-- [Packet Switching - Wikipedia](https://en.wikipedia.org/wiki/Packet_switching)
-- [Osi Model - Wikipedia](https://en.wikipedia.org/wiki/OSI_model)
-- [Osi Model - bmc blog](https://www.bmc.com/blogs/osi-model-7-layers/)
-- [Internet protocol suite - Wikipedia](https://en.wikipedia.org/wiki/Internet_protocol_suite)
-- [Internet Protocol (IP) Address - Wikipedia](https://en.wikipedia.org/wiki/IP_address)
-- [Datagram - Wikipedia](https://en.wikipedia.org/wiki/Datagram)
 
+- [CodeQuoi: Internet Layered Network Architecture](https://www.codequoi.com/en/internet-layered-network-architecture/) - A comprehensive guide to the architecture of Internet networks, explaining the different layers and their functions.
+- [CodeQuoi: IPv4 Addresses, Routing, and Subnet Masks](https://www.codequoi.com/en/ipv4-addresses-routing-and-subnet-masks/) - Detailed explanation of IPv4 addressing, routing, and subnet masks, key concepts in network communication.
+- [Wikipedia: Computer Network](https://en.wikipedia.org/wiki/Computer_network) - An overview of computer networks, including their history, types, and key principles.
+- [Wikipedia: Datagram](https://en.wikipedia.org/wiki/Datagram) - Detailed explanation of datagrams, basic units of data transfer in packet-switched networks.
+- [Wikipedia: Packet Switching](https://en.wikipedia.org/wiki/Packet_switching) - Detailed article on packet switching, the method used to send data across networks.
+- [Wikipedia: OSI Model](https://en.wikipedia.org/wiki/OSI_model) - Comprehensive article on the OSI Model, a conceptual framework used to understand network interactions.
+- [BMC Blog: Understanding the OSI Model](https://www.bmc.com/blogs/osi-model-7-layers/) - A blog post that breaks down the seven layers of the OSI Model and their functions.
+- [Wikipedia: Internet Protocol Suite](https://en.wikipedia.org/wiki/Internet_protocol_suite) - Detailed article on the Internet Protocol Suite, also known as TCP/IP, the set of protocols used for the Internet.
+- [Wikipedia: IP Address](https://en.wikipedia.org/wiki/IP_address) - Comprehensive article on IP addresses, unique identifiers for devices on a network.
 
-- [1](https://medium.com/@imyzf/netpractice-2d2b39b6cf0a)
-- [2](https://toufa7.medium.com/new-subnetting-34fadfb86c70)
-- [3](https://github.com/viruskizz/42bangkok-netpractice)
-- [4](https://github.com/lpaube/NetPractice)
-- [5](https://www.codequoi.com/en/internet-layered-network-architecture/)
-- [6](https://github.com/ricardoreves/42-net-practice)
-- [7]()
+- [Netpractice on Medium](https://medium.com/@imyzf/netpractice-2d2b39b6cf0a) - A Medium article discussing the concept of network practices.
+- [New Subnetting on Medium](https://toufa7.medium.com/new-subnetting-34fadfb86c70) - A Medium article explaining the concept of subnetting in networking.
+- [42bangkok-netpractice on GitHub](https://github.com/viruskizz/42bangkok-netpractice) - A GitHub repository.
+- [NetPractice on GitHub](https://github.com/lpaube/NetPractice) - Another GitHub repository.
+- [42-net-practice on GitHub](https://github.com/ricardoreves/42-net-practice) - Another GitHub repository.
+- [Net_Practice on GitHub](https://github.com/tblaase/Net_Practice) - Another GitHub repository.
+- [42-net-practice on GitHub](https://github.com/ricardoreves/42-net-practice) - Another GitHub repository.
   
 ## Support and Contributions
 
