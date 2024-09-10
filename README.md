@@ -125,9 +125,13 @@ Computer networks enable a wide range of applications and services, including ac
 
 Most modern computer networks use protocols based on packet-mode transmission. A network packet is a formatted unit of data carried by a packet-switched network. Packet switching is a method of grouping data into short messages in a fixed format. Packets consist of a header and a payload. The header, placed at the beginning of the block of data, contains information about the source and destination addresses, packet number, and error-checking data. The payload is the actual intended message. Headers contain metadata essential for payload delivery, while the payload is extracted and used by an operating system, application software, or higher-layer protocols.
 
-![Data Packets](https://upload.wikimedia.org/wikipedia/commons/f/f6/Packet_Switching.gif)
+<p align="center">
+<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Packet_Switching.gif">
+<p>
 
-![Network Packet](https://upload.wikimedia.org/wikipedia/commons/3/39/Network_packet.jpg)
+<p align="center">
+<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://upload.wikimedia.org/wikipedia/commons/3/39/Network_packet.jpg">
+<p>
 
 With packets, the bandwidth (the maximum rate of data transfer across a given path) of the transmission medium can be better shared among users than if the network were circuit-switched. When one user is not sending packets, the link can be filled with packets from other users, allowing the cost to be shared with relatively little interference, provided the link is not overused. Often, the route a packet needs to take through a network is not immediately available. In such cases, the packet is queued and waits until a link is free.
 
@@ -141,7 +145,9 @@ The physical link technologies of packet networks typically limit the size of pa
 
 The physical or geographic locations of network nodes and links generally have relatively little effect on a network, but the topology of interconnections can significantly impact its throughput and reliability. Network topology refers to the arrangement of different elements (links, nodes, etc.) in a computer network. With many technologies, such as bus or star networks, a single failure can cause the entire network to fail. In general, the more interconnections there are, the more robust the network is; however, this also increases the cost and complexity of installation.
 
-![Network Topology](https://upload.wikimedia.org/wikipedia/commons/9/97/NetworkTopologies.svg)
+<p align="center">
+<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://upload.wikimedia.org/wikipedia/commons/9/97/NetworkTopologies.svg">
+<p>
 
 The physical layout of the nodes in a network may not necessarily reflect the logical network topology. For example, with Fiber Distributed Data Interface (FDDI), the logical network topology is a ring, but the physical topology is often a star because all neighboring connections can be routed via a central physical location. While the physical layout is not completely irrelevant, common ducting and equipment locations can represent single points of failure due to issues like fires, power failures, and flooding.
 
@@ -165,7 +171,9 @@ A prominent example of an overlay network is the Internet itself. Initially, the
 
 The Open Systems Interconnection (OSI) model is a reference model from the International Organization for Standardization (ISO) that "provides a common basis for the coordination of standards development for the purpose of systems interconnection." In the OSI reference model, communications between systems are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.
 
-![OSI Model](https://media.fs.com/images/community/upload/kindEditor/202107/29/original-seven-layers-of-osi-model-1627523878-JYjV8oybcC.png)
+<p align="center">
+<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://media.fs.com/images/community/upload/kindEditor/202107/29/original-seven-layers-of-osi-model-1627523878-JYjV8oybcC.png">
+<p>
 
 The model partitions the flow of data in a communication system into seven abstraction layers to describe networked communication from the physical implementation of transmitting bits across a communications medium to the highest-level representation of data in a distributed application. Each intermediate layer serves a class of functionality to the layer above it and is served by the layer below it. Classes of functionality are implemented in software development using established communication protocols. Each layer in the OSI model has well-defined functions, and the methods of each layer communicate and interact with those of the layers immediately above and below as appropriate.
 
