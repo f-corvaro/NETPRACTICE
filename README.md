@@ -64,7 +64,22 @@ The project covers a wide range of topics, including IP addressing, subnetting, 
 <p align="justify">
 
 ```
-
+.
+├── netpractice
+│   └── level1.json
+│   └── level2.json
+│   └── level3.json
+│   └── level4.json
+│   └── level5.json
+│   └── level6.json
+│   └── level7.json
+│   └── level8.json
+│   └── level9.json
+│   └── level10.json
+├── resources
+│   └── net_practice.1.5.tgz
+├── LICENSE
+└── README.md
 ```
 
 <p>
