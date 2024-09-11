@@ -32,6 +32,8 @@
     - [TCP/IP (Transmission Control Protocol/Internet Protocol) - A Practical Approach](#tcpip-transmission-control-protocolinternet-protocol---a-practical-approach)
   - [Data Sharing](#data-sharing)
     - [Network nodes](#network-nodes)
+    - [Network Interfaces](#network-interfaces)
+- [Levels explanation](#levels-explanation)
 - [Evaluation Process](#evaluation-process)
   - [Peer-Evaluations](#peer-evaluations)
   - [Correction sheet](#correction-sheet)
@@ -112,7 +114,7 @@ At the bottom of the page, you will find logs that can help you understand why y
 
 To complete this assignment, it is strongly recommended to understand how addressing works in a network, especially with devices such as routers. Make sure to read about TCP/IP addressing.
 
-You can find my NetPractice logs [here](https://github.com/f-corvaro/NETPRACTICE/tree/main/netpractice).
+You can find my NetPractice logs [here](https://github.com/f-corvaro/NETPRACTICE/tree/main/netpractice). Before diving into the exercises, it's important to familiarize yourself with the theoretical background required for this material.
 
 </p>
 
@@ -150,7 +152,30 @@ Every host, router, and switch is a network node. The sequence of nodes a packet
 
 A **network address** could be an IP address like `192.168.1.1`. This is a unique identifier used by devices to communicate within a network. The **Dynamic Host Configuration Protocol(DHCP) server**  is responsible for assigning IP addresses to devices on a network. When a device connects to the network, it sends a request to the DHCP server, which then assigns an available IP address to the device. The DHCP server keeps track of which IP addresses are currently in use, ensuring that each device on the network gets a unique IP address. If a device disconnects from the network, its IP address is returned to the pool of available addresses and can be reassigned to a different device.
 
-**IP (Internet Protocol):**: Used to identify devices on a network and to route data packets from one device to another. It is a logical address that can change.This is used to communicate between different networks, over the Internet. When you send an email or browse a website, your device uses its IP address to reach remote servers.
+**IP (Internet Protocol):**: Used to identify devices on a network and to route data packets from one device to another. It is a logical address that can change.This is used to communicate between different networks, over the Internet. When you send an email or browse a website, your device uses its IP address to reach remote servers. An IP address serves as an identifier for a specific network interface, rather than the device itself.
+
+**IPv4** is the fourth version of the Internet Protocol. Although the latest version is IPv6, which introduces a new addressing system, IPv4 remains widely used. An IPv4 address is a `32-bit` integer, represented as four octets separated by dots. Each octet, a positive number, corresponds to 8 bits. For instance, consider the address `198.42.214.5`. Here, `198` is the decimal representation of the first octet, `42` of the second, and so forth. In binary, this address would be: 
+
+![Decimal to binary conversion](https://www.cuemath.com/numbers/decimal-to-binary/)
+
+`11000110.00101010.11010110.00000101`
+
+Given the 32-bit limitation, the IPv4 address space is finite. The smallest possible address is 0.0.0.0, and the largest is 255.255.255.255:
+
+| Decimal         | Binary                              |
+| --------------- | ----------------------------------- |
+| 0.0.0.0         | 00000000 00000000 00000000 00000000 |
+| 255.255.255.255 | 11111111 11111111 11111111 11111111 |
+
+**IPv6** expands the IP address length from 32 bits to 128 bits, significantly increasing the number of available addresses. With 128 bits, we can have over 340 sextillion addresses.
+
+IPv6 addresses are represented as hexadecimal numbers. Each address consists of eight groups, each containing 16 bits (2 octets), separated by colons (":").
+
+`2001:0db8:0000:85a3:0000:0000:ac1f:8001`
+
+We can shorten the notation by removing some non-significant zeros:
+
+`2001:db8:0:85a3:0:0:ac1f:8001`
 
 **MAC (Media Access Control):** Used to identify a physical device on the local network. It is a unique and immutable physical address. It is used locally, within the same network, to communicate between devices. For example, when you connect an Ethernet cable to your computer, your network card uses its MAC address to communicate with the network switch.
 
@@ -291,15 +316,37 @@ With packets, the bandwidth (the maximum rate of data transfer across a given pa
 
 <p align="justify">
 
+A **host** is any system connected to a network, whether it's a computer, a server, a smartphone, or even a specialized network device. It serves as a node or endpoint in the network, capable of sending and receiving data. A **client** is a computer, a smartphone, or some other type of connected device. A **server** is a more powerful machine which stores and distributes content over the Internet.
+
 Each node in a network has a unique network address, which can be used to send data to that node. Nodes can be connected to each other in various ways, forming different network topologies. The way nodes are connected and interact with each other determines many properties of the network, such as its speed, reliability, and resilience to faults.
+
+Like any other type of computer data, a packet is composed of a long series of bits. Each bit in a packet must be moved all the way to its destination (by physical media). Moving a packet’s bits from one physical medium to another is the **network switch**’s job. Along its route, a packets will no doubt pass through several switches.
+
+<p align="center">
+<a href="https://www.codequoi.com/en/ipv4-addresses-routing-and-subnet-masks/"><img width="650" src="https://www.codequoi.com/images/ipv4-subnet-masks/switch_en.drawio.png">
+<p>
+
+**Routers** are used to route packets, which are not all going to the same destination. Much like a network switch, a router can transfer a packet from one physical medium to another. However, its capabilities extend beyond this. Typically, a router is connected to multiple network segments and possesses the intelligence to determine the optimal path for a packet based on its destination.
+
+<p align="center">
+<a href="https://www.codequoi.com/en/ipv4-addresses-routing-and-subnet-masks/"><img width="650" src="https://www.codequoi.com/images/ipv4-subnet-masks/router_en.drawio.png">
+<p>
+
+Next, we need to comprehend how a router decides the direction to send a packet. This decision-making process utilizes a forwarding table. But first, let's examine the network interfaces.
+
+#### Network Interfaces
+
+Every device connected to internet has at least one network interface, a network card that acts as bridge between the device and the physial medium connected to the rest of the network. A client typically has only one interface since it has only one network connection. A router usually has many, one for each of its network.
+
+
+
+
 
 **Modem:** A modem (short for modulator-demodulator) is a device that converts data between digital formats used by computers and analog formats used by older telephone lines or radio signals. In a home network, the modem connects to the internet service provider's network, allowing devices in the home to access the internet.
 
 **Router:** A router is a device that forwards data packets between computer networks, creating an overlay internetwork. Routers perform the traffic directing functions on the internet; data sent through the internet, such as a web page or email, is in the form of data packets. A packet is typically forwarded from one router to another through the networks that constitute the internet work until it reaches its destination node.
 
 **Bridges:** A network bridge is a computer networking device that creates a single aggregate network from multiple communication networks or network segments. This function is called network bridging. Bridging is distinct from routing, which allows multiple different networks to communicate independently while remaining separate.
-
-**Switches:** A network switch is a multiport network bridge that uses MAC addresses to forward data at the data link layer (layer 2) of the OSI model. Some switches can also forward data at the network layer (layer 3) by additionally incorporating routing functionality. Such switches are commonly known as layer-3 switches or multilayer switches.
 
 **Firewall:** A firewall is a network security device that monitors incoming and outgoing network traffic and decides whether to allow or block specific traffic based on a defined set of security rules. Firewalls have been a first line of defense in network security for over 25 years. They establish a barrier between secured and controlled internal networks that can be trusted and untrusted outside networks, such as the internet.
 
@@ -311,6 +358,17 @@ Each node in a network has a unique network address, which can be used to send d
 
 </p>
 
+## Levels explanation
+
+**Spoiler Alert: Before viewing the solutions, try to solve them on your own.**
+
+<dl>
+<details>
+  <summary>LEVEL 1</summary>
+  <a href="https://github.com/f-corvaro/NETPRACTICE"><img src="https://badge.mediaplus.ma/black/fcorvaro?1337Badge=off&UM6P=off">
+  </details>
+
+</dl>
 
 ## Evaluation Process
 
