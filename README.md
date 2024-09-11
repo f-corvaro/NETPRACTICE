@@ -32,7 +32,9 @@
     - [TCP/IP (Transmission Control Protocol/Internet Protocol) - A Practical Approach](#tcpip-transmission-control-protocolinternet-protocol---a-practical-approach)
   - [Data Sharing](#data-sharing)
     - [Network nodes](#network-nodes)
-    - [Network Interfaces](#network-interfaces)
+- [B Mask    : 11111111 11111111 00000000 00000000 : 255.255.0.0](#b-mask-----11111111-11111111-00000000-00000000--25525500)
+    - [Classless IP Addressing (CDIR)](#classless-ip-addressing-cdir)
+  - [Da sistemare:](#da-sistemare)
 - [Levels explanation](#levels-explanation)
 - [Evaluation Process](#evaluation-process)
   - [Peer-Evaluations](#peer-evaluations)
@@ -122,6 +124,8 @@ You can find my NetPractice logs [here](https://github.com/f-corvaro/NETPRACTICE
 
 <p align="justify">
 
+I know that the theoretical aspects are taken very broadly, but I firmly believe that it is necessary to have a cultural basis on these topics. Feel free to skip some parts or read the whole thing. Enjoy it!
+
 ### Quick Overview
 
 The Internet, a vast network of networks, comprises millions of both public and private networks spanning commercial, academic, and governmental sectors. Individuals typically access the Internet via Internet Service Providers (ISPs), which themselves form networks connecting homes, businesses, and other entities within specific geographic areas. These ISPs also connect to higher-level ISPs to gain broader Internet access, creating a hierarchical structure with a handful of level 1 ISPs at the top and hundreds of thousands of lower-level ISPs at the base. The coverage of ISPs can range from global to local scales. Large content providers, such as Google, often establish their own networks and connect directly to lower-level ISPs to reduce costs and enhance connection speeds for their users.
@@ -200,7 +204,7 @@ A **hostname** is a more human-friendly label for a device on a network. For exa
 <p align="justify">
 
 Computer networks can be categorized based on their size and the geographical area they cover. **Local Area Networks (LANs)** are networks that connect devices over a relatively short distance, such as within a building or campus. **Wide Area Networks (WANs)** cover larger geographical areas, often spanning cities, countries, or even the globe. **Metropolitan Area Networks (MANs)** are larger than LANs but smaller than WANs, typically covering a city or suburb. **Wireless Local Area Networks (WLANs)** are similar to LANs, but use wireless communication methods instead of traditional wired connections. **Storage Area Networks (SANs)** are networks designed to provide access to consolidated, block-level data storage. **Controller Area Networks (CANs)** are vehicle bus standards designed to allow microcontrollers and devices to communicate with each other within a vehicle without a host computer.
-
+se bit shifting for multiplication, 
 <p align="center">
 <a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://informationq.com/wp-content/uploads/2016/09/Type-of-Computer-Network.jpg">
 <p>
@@ -297,9 +301,7 @@ The **TCP/IP (Transmission Control Protocol/Internet Protocol) Model**, also kno
 
 ### Data Sharing
 
-<p align="justify">
-
-In a computer network, data is shared using a process called **packet switching**. The data to be sent is broken down into small units, called packets, in a fixed format. Packets, also known as **Datagrams**, consist of a header and a payload section. The header, placed at the beginning of the block of data, contains information about the source and destination addresses, packet number, and error-checking data. The payload is the actual intended message. Headers contain metadata essential for payload delivery, while the payload is extracted and used by an operating system, application software, or higher-layer protocols.
+<p align="justify">https://www.codequoi.com/en/binary-010-uses-of-bit-shifting-and-bitwise-operations/ctual intended message. Headers contain metadata essential for payload delivery, while the payload is extracted and used by an operating system, application software, or higher-layer protocols.
 
 <p align="center">
 <a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Packet_Switching.gif">
@@ -315,6 +317,8 @@ With packets, the bandwidth (the maximum rate of data transfer across a given pa
 #### Network nodes
 
 <p align="justify">
+
+Every device connected to internet has at least one network interface, a network card that acts as bridge between the device and the physial medium connected to the rest of the network. A client typically has only one interface since it has only one network connection. A router usually has many, one for each of its network.
 
 A **host** is any system connected to a network, whether it's a computer, a server, a smartphone, or even a specialized network device. It serves as a node or endpoint in the network, capable of sending and receiving data. A **client** is a computer, a smartphone, or some other type of connected device. A **server** is a more powerful machine which stores and distributes content over the Internet.
 
@@ -332,19 +336,135 @@ Like any other type of computer data, a packet is composed of a long series of b
 <a href="https://www.codequoi.com/en/ipv4-addresses-routing-and-subnet-masks/"><img width="650" src="https://www.codequoi.com/images/ipv4-subnet-masks/router_en.drawio.png">
 <p>
 
-Next, we need to comprehend how a router decides the direction to send a packet. This decision-making process utilizes a forwarding table. But first, let's examine the network interfaces.
-
-#### Network Interfaces
-
-Every device connected to internet has at least one network interface, a network card that acts as bridge between the device and the physial medium connected to the rest of the network. A client typically has only one interface since it has only one network connection. A router usually has many, one for each of its network.
+Next, we need to comprehend how a router decides the direction to send a packet. This decision-making process utilizes a forwarding table. 
 
 
+A router's primary role is to inspect the headers of incoming packets and determine their destination addresses. This informatihttps://www.codequoi.com/en/binary-010-uses-of-bit-shifting-and-bitwise-operations/
+<p align="center">
+<a href="https://www.codequoi.com/en/ipv4-addresses-routing-and-subnet-masks/"><img width="650" src="https://www.codequoi.com/images/ipv4-subnet-masks/forwarding_table_en.drawio.png">
+<p>
+
+In this scenario, the router inspects the header of the incoming packet and consults its forwarding table to determine that the packet should be routed via interface number 2.
+
+However, consider the fact that there are approximately 4 billion 32-bit IPv4 addresses. A router with a forwarding table containing entries for all 4 billion addresses would be highly inefficient and slow, even with an optimized routing algorithm. Wouldn't it be more efficient to determine the packet's destination by reading just the initial bits of the address? Precisely! This is one of the benefits offered by the concept of subnetworks.
+
+An IP address is divided into two parts: the network prefix and the host identifier. The network prefix identifies the subnetwork to which the device belongs, while the host identifier specifies the particular device within that subnetwork. When a router receives a packet, it typically only needs to examine the network prefix to determine the packet's destination. To distinguish between the network prefix and the host identifier, a router uses a subnet mask. But how many bits does the network prefix comprise? The answer might be more complex than you think…
+
+Internet is a network made of many subnetworks. IP addresses are assigned by range depending on the size of the subnetwork. Originally, address ranges were categorized into several classes: A for the largest networks, B for medium-sized networks and C for the smallest networks. So the 8, 16 or 24 first bits of the IPv4 address represented the subnetwork, and the following bits identified the host within that subnet.
+
+<p align="center">
+<a href="https://www.codequoi.com/en/ipv4-addresses-routing-and-subnet-masks/"><img width="650" src="https://www.codequoi.com/images/ipv4-subnet-masks/ipv4_classful_addressing_en.drawio-1.png">
+<p>
+
+To identify the subnetwork bits, we first needed to determine the address class. If the first bit was 0, it was a class A network; if the first two bits were 1 and 0, it was class B; if the first three were 110, it was class C. We could then apply the appropriate subnet mask and perform a bitwise AND operation to isolate the subnetwork. 
+
+For example, consider the IP address 167.45.198.2:
+
+IP        : 10100111 00101101 11000110 00000010 : 167.45.198.2
+B Mask    : 11111111 11111111 00000000 00000000 : 255.255.0.0
+Bitwise & : 10100111 00101101 00000000 00000000 : 167.45.0.0
+
+However, by the 1990s, the rigid structure of having 1, 2, or 3 octets represent the subnet in an address was proving inadequate for the growing number of small to medium-sized networks. A class C subnet could only support 254 hosts - too few for most organizations. Conversely, a class B subnet, supporting up to 65,354 hosts, was often excessive. For instance, an organization needing to connect 2,000 hosts would receive a class B subnet, resulting in a wastage of around 63,000 addresses that couldn't be used elsewhere.
+
+As a result, the classful IPv4 addressing method was replaced with a more flexible classless system, known as CIDR (Classless Inter-Domain Routing), which is still in use today.
+
+In order to isolate the bits representing the subnetwork, it was necessary to first identify its class. If the first bit was 0, the address belonged to a class A network; if the first two bits were 1 and 0, the address was class B; if the first three were 110, then it belonged to class C. Then, we could apply the appropriate subnet mask as well as the bitwise AND operation to identify the subnetwork. 
+
+IP        : 10100111 00101101 11000110 00000010 : 167.45.198.2
+B Mask    : 11111111 11111111 00000000 00000000 : 255.255.0.0
+---------------------------------------------------------------
+Bitwise & : 10100111 00101101 00000000 00000000 : 167.45.0.0 (result of bitwise AND)
+
+However, in the 1990s, having 1, 2 or 3 octets representing the subnet in an address proved to be too rigid of a system to support the growing number of small to medium organization networks. A class C subnet could only accommodate 254 hosts: too few for most organizations. But a class B subnet, which could support up to 65,354 hosts, was much too big! Yet with this system, an organization wishing to connect 2,000 hosts would get a class B subnet. Cases like this represented a loss of 63,000 addresses that could not be used by any other organizations.
+
+Therefore, this classful IPv4 addressing method was soon abandoned in favor of a classless addressing system which is still in use today : CIDR.
+
+#### Classless IP Addressing (CDIR)
+
+Classless Inter-Domain Routing ( CIDR) generalized the notion of subnetworks by making it more flexible. In this system, the subnet part of the address is not fixed as in the class method above. CIDR subnet masks can be of varying lengths, which allows for a much more efficient use of IP address space.
+
+Since the subnet mask can no longer be deduced from the IP address itself, CIDR introduced a new notation to indicate the number of bits representing the subnetwork. The four-octet IPv4 address may be followed by a slash, and then the number of subnetwork bits. For example, 128.42.42.201/28 indicates that the 28 first bits of the address represent the subnetwork:
+
+IP        : 10000000 00101010 00101010 11001001 : 128.42.42.201
+/28 Mask  : 11111111 11111111 11111111 11110000 : 255.255.255.240
+Bitwise & : 10000000 00101010 00101010 11000000 : 128.42.42.192
+
+The formula to determine the number of possible addresses within a subnetwork is 2address length - mask. This means that there are 232-28 = 24 = 16 possible IPv4 addresses in this 28-bit subnet range:
+
+IP       : 10000000 00101010 00101010 11001001 : 128.42.42.201
+/28 Mask : 11111111 11111111 11111111 11110000 : 255.255.255.240
+IP min   : 10000000 00101010 00101010 11000000 : 128.42.42.192
+IP max   : 10000000 00101010 00101010 11001111 : 128.42.42.207
+
+In this way, an Internet Service Provider may receive a /19 bloc, meaning 232-19 = 213 = 8,192 IPv4 addresses. It can then break this block down into subnetworks of varying sizes depending on its client’s needs. For example, for one small organization requiring 200 connected hosts, it could provide a /24 subnet (2^(32-24) = 2^(8) = 256 addresses). To a larger company requiring 2,000 hosts, it could allocate another /20 subnet (232-21 = 211 = 2,048 addresses).
+
+But how do these CIDR subnet masks work to help route a packet to its destination, in practice? To understand this, let’s map out a small fictitious part of Internet.
+
+<p align="center">
+<a href="https://www.codequoi.com/en/ipv4-addresses-routing-and-subnet-masks/"><img width="650" src="https://www.codequoi.com/images/ipv4-subnet-masks/subnet_ipv4_router_mask_example_en.drawio.png">
+<p>
+
+The first thing we might notice here is that each client and router has a forwarding table which informs it where to send packets. The router at the top of the diagram has two entries in its forwarding table. The first entry indicates that all incoming packets with addresses starting with the first 24 bits being 151.147.106.x must be sent to the second router’s interface with the address 151.147.106.62. That’s the “next hop” on the route to their destination. The second entry in this same forwarding table indicates that by default, all packets should be sent to 163.243.250.31 (another router connected to the R1-1 interface which doesn’t appear on this diagram), whatever their destination ( 0.0.0.0/0).
+
+There are three distinct subnets in this diagram:
+
+The 30-bit subnet 151.147.106.60, which contains the two routers’ interfaces, R1-3 ( 151.147.106.61) and R2-1 ( 151.147.106.62).
+A 28-bit subnet, 151.147.106.0, containing the router’s R2-3 interface ( 151.147.106.1) and the client’s B1 interface ( 151.147.106.2). The addresses inside this subnetwork must be between 151.147.106.1 and 151.147.106.14.
+And a 29-bit subnet, 151.147.106.16, which contains the router’s R2-2 interface ( 151.147.106.17) and the client’s A1 interface ( 151.147.106.18). The interfaces inside this subnet must have addresses between 151.147.106.16 and 151.147.106.22.
+Of course, subnets should not overlap. For example, we couldn’t assign the address 151.147.106.3 to the R2-2 interface, since that address is part of the R2-3 interface’s subnet.
+
+Reserved IPv4 Addresses
+About 600 million IPv4 addresses are reserved for specific uses and cannot be assigned. These addresses are used, among other things, for multicast traffic, to maintain router tables, to translate IPv4 to IPv6, or to provide unrestricted address space for private networks.
+
+Address Blocks	Range of Addresses	Number of Addresses	Use
+0.0.0.0/8	0.0.0.0 – 0.255.255.255	16 777 216	Software
+10.0.0.0/8	10.0.0.0 – 10.255.255.255	16 777 216	Private network: local communications
+100.64.0.0/10	100.64.0.0 – 100.127.255.255	4 194 304	Private network: ISP communications
+127.0.0.0/8	127.0.0.0 – 127.255.255.255	16 777 216	Host: loopback addresses for localhost
+169.254.0.0/16	169.254.0.0 – 169.254.255.255	65 536	Subnet: local communications between two hosts on a single link
+172.16.0.0/12	172.16.0.0 – 172.31.255.255	1 048 576	Private network: local communications
+192.0.0.0/24	192.0.0.0 – 192.0.0.255	256	Private network: IETF protocol assignments
+192.0.2.0/24	192.0.2.0 – 192.0.2.255	256	Documentation: TEST-NET-1
+192.88.99.0/24	192.88.99.0 – 192.88.99.255	256	Reserved: 6to4 relay
+192.168.0.0/16	192.168.0.0 – 192.168.255.255	65 536	Private network: local communications
+198.18.0.0/15	198.18.0.0 – 198.19.255.255	131 072	Private network: bench-marking between two connected subnets
+198.51.100.0/24	198.51.100.0 – 198.51.100.255	256	Documentation: TEST-NET-2
+203.0.113.0/24	203.0.113.0 – 203.0.113.255	256	Documentation: TEST-NET-3
+224.0.0.0/4	224.0.0.0 – 239.255.255.255	268 435 456	Reserved: IPv4 multicast
+233.252.0.0/24	233.252.0.0 – 233.252.0.255	256	Documentation: MCAST-TEST-NET
+240.0.0.0/4	240.0.0.0 – 255.255.255.254	268 435 455	Reserved: for future use
+255.255.255.255/32	255.255.255.255	1	Subnet: limited broadcast destination address
+As we can see in this table, come addresses are reserved for technical purposes (testing, documentation, protocol assignments). But what does “private network” mean, exactly?
+
+Public vs Private Addresses
+A public address is assigned to a router by an Internet Service Provider, and allows communications over the Internet. So with a public address, one can send and receive packets from anywhere on the Internet.
+
+A private address is assigned by a router to each device connected to it. This private address allows communication within the same subnetwork, for example between devices connected to the same WiFi network. Of course, a device cannot use its private address to send or receive packets from outside its network. This private address system saves IPv4 address space since several devices may have the same private address as long as they aren’t on the same subnet.
+
+Network Addresses and Broadcast Addresses
+Network and broadcast addresses do not appear on the list of reserved addresses above. However, they should generally not be used either.
+
+Each subnetwork address range starts with the address of the network itself. For example, the address 130.200.189.45/24 is part of an address block starting at 130.200.189.0/24. This address is therefore considered the network address and cannot be assigned to an interface.
+
+The same goes for the last address in a block. If we go back to the previous example, the last address in that block is 130.200.189.255/24. This address is called the broadcast address because a packet sent to it is transferred to all interfaces in the subnetwork. For this reason, broadcast addresses cannot be assigned to a device interface either.
+
+Curbing the IPv4 Address Shortage
+A 32-bit length means that there are around 4 billion IPv4 addresses. That’s a lot! Yet it isn’t enough for all devices connected to this global network. 4 billion, that’s only half of the human population. And more and more citizens of developing countries are using the Internet. Further, a growing number of objects are now also connected to the Internet: watches, cars, smart cities, seismic monitoring or home security systems… In short, the Internet of Things.
+
+Foreseeing increasing Internet usage in the 1990s, the Internet Engineering Task Force focused on a successor to IPv4, which could offer many more addresses…
+
+CIDR subnet masks and notations also apply to IPv6 addresses.
+
+Since it is inconceivable to turn off the entire Internet for the time it would take to update all hosts and routers to the new IP version, IPv6 is progressively deployed. IPv6 is backward-compatible with IPv4, but the opposite is not necessarily true. Some routers and hosts are incapable of running IPv6. Until they can be replaced, an IPv6 packet that must travel through an incompatible router can temporarily disguise itself as IPv4 before being restored to IPv6 further along its route, if possible.
 
 
+
+
+### Da sistemare:
 
 **Modem:** A modem (short for modulator-demodulator) is a device that converts data between digital formats used by computers and analog formats used by older telephone lines or radio signals. In a home network, the modem connects to the internet service provider's network, allowing devices in the home to access the internet.
 
-**Router:** A router is a device that forwards data packets between computer networks, creating an overlay internetwork. Routers perform the traffic directing functions on the internet; data sent through the internet, such as a web page or email, is in the form of data packets. A packet is typically forwarded from one router to another through the networks that constitute the internet work until it reaches its destination node.
+**Router:** A router is a device that forwards data packets between computer networks, creating an overlay internetwork. Routers perform the traffic directing functions on the internet; data sent throughttps://www.codequoi.com/en/binary-010-uses-of-bit-shifting-and-bitwise-operations/h the internet, such as a web page or email, is in the form of data packets. A packet is typically forwarded from one router to another through the networks that constitute the internet work until it reaches its destination node.
 
 **Bridges:** A network bridge is a computer networking device that creates a single aggregate network from multiple communication networks or network segments. This function is called network bridging. Bridging is distinct from routing, which allows multiple different networks to communicate independently while remaining separate.
 
@@ -423,6 +543,8 @@ scale=2
 
 
 - [CodeQuoi: Internet Layered Network Architecture](https://www.codequoi.com/en/internet-layered-network-architecture/) - A comprehensive guide to the architecture of Internet networks, explaining the different layers and their functions.
+- [CodeQuoi: Binary 001 - Counting & Calculating Like a Computer](https://www.codequoi.com/en/binary-001-counting-calculating-like-a-computer/) - This resource provides a deep dive into the binary number system, which is fundamental to computer operations. It explains how computers use binary for counting and calculations, making it a valuable resource for understanding low-level computer operations.
+- [Bit shifting](https://www.codequoi.com/en/binary-010-uses-of-bit-shifting-and-bitwise-operations/)
 - [CodeQuoi: IPv4 Addresses, Routing, and Subnet Masks](https://www.codequoi.com/en/ipv4-addresses-routing-and-subnet-masks/) - Detailed explanation of IPv4 addressing, routing, and subnet masks, key concepts in network communication.
 - [Wikipedia: Computer Network](https://en.wikipedia.org/wiki/Computer_network) - An overview of computer networks, including their history, types, and key principles.
 - [Wikipedia: Datagram](https://en.wikipedia.org/wiki/Datagram) - Detailed explanation of datagrams, basic units of data transfer in packet-switched networks.
@@ -439,6 +561,9 @@ scale=2
 - [42-net-practice on GitHub](https://github.com/ricardoreves/42-net-practice) - Another GitHub repository.
 - [Net_Practice on GitHub](https://github.com/tblaase/Net_Practice) - Another GitHub repository.
 - [42-net-practice on GitHub](https://github.com/ricardoreves/42-net-practice) - Another GitHub repository.
+- [gh](https://github.com/caroldaniel/42sp-cursus-netpractice/tree/main)
+- [youtube](https://www.youtube.com/watch?v=eHV1aOnu7oM)
+- [github](https://github.com/ucefooo/net_practice?tab=readme-ov-file)
   
 ## Support and Contributions
 
