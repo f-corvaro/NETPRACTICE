@@ -560,7 +560,6 @@ scale=2
 - [NetPractice on GitHub](https://github.com/lpaube/NetPractice) - Another GitHub repository.
 - [42-net-practice on GitHub](https://github.com/ricardoreves/42-net-practice) - Another GitHub repository.
 - [Net_Practice on GitHub](https://github.com/tblaase/Net_Practice) - Another GitHub repository.
-- [42-net-practice on GitHub](https://github.com/ricardoreves/42-net-practice) - Another GitHub repository.
 - [gh](https://github.com/caroldaniel/42sp-cursus-netpractice/tree/main)
 - [youtube](https://www.youtube.com/watch?v=eHV1aOnu7oM)
 - [github](https://github.com/ucefooo/net_practice?tab=readme-ov-file)
