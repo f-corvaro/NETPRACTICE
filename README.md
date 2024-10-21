@@ -13,9 +13,12 @@
     <a href="https://github.com/f-corvaro/NETPRACTICE"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/f-corvaro/NETPRACTICE?color=yellow" /></a>
 </p>
 
+## README NOT YET FINISHED
+
 <h3 align="center">Index</h3>
 <p align="center">
 
+- [README NOT YET FINISHED](#readme-not-yet-finished)
 - [Introduction](#introduction)
   - [Overview](#overview)
 - [Folder Structure](#folder-structure)
