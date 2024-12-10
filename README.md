@@ -34,7 +34,6 @@
     - [Network nodes](#network-nodes)
 - [B Mask    : 11111111 11111111 00000000 00000000 : 255.255.0.0](#b-mask-----11111111-11111111-00000000-00000000--25525500)
     - [Classless IP Addressing (CDIR)](#classless-ip-addressing-cdir)
-  - [Da sistemare:](#da-sistemare)
 - [Levels explanation](#levels-explanation)
 - [Evaluation Process](#evaluation-process)
   - [Peer-Evaluations](#peer-evaluations)
@@ -173,7 +172,9 @@ A **network address** could be an IP address like `192.168.1.1`. This is a uniqu
 
 **IPv4** is the fourth version of the Internet Protocol. Although the latest version is IPv6, which introduces a new addressing system, IPv4 remains widely used. An IPv4 address is a `32-bit` integer, represented as four octets separated by dots. Each octet, a positive number, corresponds to 8 bits. For instance, consider the address `198.42.214.5`. Here, `198` is the decimal representation of the first octet, `42` of the second, and so forth. In binary, this address would be: 
 
-![Decimal to binary conversion](https://www.cuemath.com/numbers/decimal-to-binary/)
+![Decimal to binary conversion](https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/decimal-to-binary-conversion-1623818593.png)
+
+[Decimal to Binary Conversion - Cuemath](https://www.cuemath.com/numbers/decimal-to-binary/).
 
 `11000110.00101010.11010110.00000101`
 
@@ -471,10 +472,6 @@ CIDR subnet masks and notations also apply to IPv6 addresses.
 Since it is inconceivable to turn off the entire Internet for the time it would take to update all hosts and routers to the new IP version, IPv6 is progressively deployed. IPv6 is backward-compatible with IPv4, but the opposite is not necessarily true. Some routers and hosts are incapable of running IPv6. Until they can be replaced, an IPv6 packet that must travel through an incompatible router can temporarily disguise itself as IPv4 before being restored to IPv6 further along its route, if possible.
 
 
-
-
-### Da sistemare:
-
 **Modem:** A modem (short for modulator-demodulator) is a device that converts data between digital formats used by computers and analog formats used by older telephone lines or radio signals. In a home network, the modem connects to the internet service provider's network, allowing devices in the home to access the internet.
 
 **Router:** A router is a device that forwards data packets between computer networks, creating an overlay internetwork. Routers perform the traffic directing functions on the internet; data sent throughttps://www.codequoi.com/en/binary-010-uses-of-bit-shifting-and-bitwise-operations/h the internet, such as a web page or email, is in the form of data packets. A packet is typically forwarded from one router to another through the networks that constitute the internet work until it reaches its destination node.
@@ -625,7 +622,6 @@ scale=2
 </p><br>
 
 ## References
-
 
 - [CodeQuoi: Internet Layered Network Architecture](https://www.codequoi.com/en/internet-layered-network-architecture/) - A comprehensive guide to the architecture of Internet networks, explaining the different layers and their functions.
 - [CodeQuoi: Binary 001 - Counting & Calculating Like a Computer](https://www.codequoi.com/en/binary-001-counting-calculating-like-a-computer/) - This resource provides a deep dive into the binary number system, which is fundamental to computer operations. It explains how computers use binary for counting and calculations, making it a valuable resource for understanding low-level computer operations.
