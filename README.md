@@ -172,7 +172,9 @@ A **network address** could be an IP address like `192.168.1.1`. This is a uniqu
 
 **IPv4** is the fourth version of the Internet Protocol. Although the latest version is IPv6, which introduces a new addressing system, IPv4 remains widely used. An IPv4 address is a `32-bit` integer, represented as four octets separated by dots. Each octet, a positive number, corresponds to 8 bits. For instance, consider the address `198.42.214.5`. Here, `198` is the decimal representation of the first octet, `42` of the second, and so forth. In binary, this address would be: 
 
-![Decimal to binary conversion](https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/decimal-to-binary-conversion-1623818593.png)
+<p align="center">
+<a href="https://www.cuemath.com/numbers/decimal-to-binary/"><img width="650" src="https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/decimal-to-binary-conversion-1623818593.png"></a>
+<p>
 
 [Decimal to Binary Conversion - Cuemath](https://www.cuemath.com/numbers/decimal-to-binary/).
 
