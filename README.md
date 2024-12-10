@@ -172,8 +172,6 @@ A **network address** could be an IP address like `192.168.1.1`. This is a uniqu
 <a href="https://www.cuemath.com/numbers/decimal-to-binary/"><img width="650" src="https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/decimal-to-binary-conversion-1623818593.png"></a>
 <p>
 
-[Decimal to Binary Conversion - Cuemath](https://www.cuemath.com/numbers/decimal-to-binary/).
-
 `11000110.00101010.11010110.00000101`
 
 Given the 32-bit limitation, the IPv4 address space is finite. The smallest possible address is 0.0.0.0, and the largest is 255.255.255.255:
