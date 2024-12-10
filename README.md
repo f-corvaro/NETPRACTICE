@@ -15,37 +15,33 @@
 
 <h3 align="center">Index</h3>
 <p align="center">
-
-- [Introduction](#introduction)
-  - [Overview](#overview)
-- [Folder Structure](#folder-structure)
-- [Project Requirements - Mandatory Part](#project-requirements---mandatory-part)
-  - [Getting Started](#getting-started)
-  - [Training Levels](#training-levels)
-- [Theoretical Background](#theoretical-background)
-  - [Quick Overview](#quick-overview)
-  - [Fundamentals of Computer Networks](#fundamentals-of-computer-networks)
-  - [Basic Operations on Computer Networks](#basic-operations-on-computer-networks)
-  - [Types and Topologies of Computer Networks](#types-and-topologies-of-computer-networks)
-  - [Reference models](#reference-models)
-    - [Open Systems Interconnection (OSI) - A Theoretical Perspective](#open-systems-interconnection-osi---a-theoretical-perspective)
-    - [TCP/IP (Transmission Control Protocol/Internet Protocol) - A Practical Approach](#tcpip-transmission-control-protocolinternet-protocol---a-practical-approach)
-  - [Data Sharing](#data-sharing)
-    - [Network nodes](#network-nodes)
-- [B Mask    : 11111111 11111111 00000000 00000000 : 255.255.0.0](#b-mask-----11111111-11111111-00000000-00000000--25525500)
-    - [Classless IP Addressing (CDIR)](#classless-ip-addressing-cdir)
-- [Levels explanation](#levels-explanation)
-- [Evaluation Process](#evaluation-process)
-  - [Peer-Evaluations](#peer-evaluations)
-  - [Correction sheet](#correction-sheet)
-- [Developed Skills](#developed-skills)
-- [References](#references)
-- [Support and Contributions](#support-and-contributions)
-- [Author](#author)
-
-
+    <a href="#introduction">Introduction</a><br>
+    <a href="#overview">Overview</a><br>
+    <a href="#folder-structure">Folder Structure</a><br>
+    <a href="#project-requirements---mandatory-part">Project Requirements - Mandatory Part</a><br>
+    <a href="#getting-started">Getting Started</a><br>
+    <a href="#training-levels">Training Levels</a><br>
+    <a href="#theoretical-background">Theoretical Background</a><br>
+    <a href="#quick-overview">Quick Overview</a><br>
+    <a href="#fundamentals-of-computer-networks">Fundamentals of Computer Networks</a><br>
+    <a href="#basic-operations-on-computer-networks">Basic Operations on Computer Networks</a><br>
+    <a href="#types-and-topologies-of-computer-networks">Types and Topologies of Computer Networks</a><br>
+    <a href="#reference-models">Reference models</a><br>
+    <a href="#open-systems-interconnection-osi---a-theoretical-perspective">Open Systems Interconnection (OSI) - A Theoretical Perspective</a><br>
+    <a href="#tcpip-transmission-control-protocolinternet-protocol---a-practical-approach">TCP/IP (Transmission Control Protocol/Internet Protocol) - A Practical Approach</a><br>
+    <a href="#data-sharing">Data Sharing</a><br>
+    <a href="#network-nodes">Network nodes</a><br>
+    <a href="#b-mask-----11111111-11111111-00000000-00000000--25525500">B Mask : 11111111 11111111 00000000 00000000 : 255.255.0.0</a><br>
+    <a href="#classless-ip-addressing-cdir">Classless IP Addressing (CIDR)</a><br>
+    <a href="#levels-explanation">Levels explanation</a><br>
+    <a href="#evaluation-process">Evaluation Process</a><br>
+    <a href="#peer-evaluations">Peer-Evaluations</a><br>
+    <a href="#correction-sheet">Correction sheet</a><br>
+    <a href="#developed-skills">Developed Skills</a><br>
+    <a href="#references">References</a><br>
+    <a href="#support-and-contributions">Support and Contributions</a><br>
+    <a href="#author">Author</a><br>
 </p>
-<br>
 
 ## Introduction
 
@@ -353,7 +349,6 @@ Like any other type of computer data, a packet is composed of a long series of b
 <p>
 
 Next, we need to comprehend how a router decides the direction to send a packet. This decision-making process utilizes a forwarding table. 
-
 
 A router's primary role is to inspect the headers of incoming packets and determine their destination addresses. This informatihttps://www.codequoi.com/en/binary-010-uses-of-bit-shifting-and-bitwise-operations/
 <p align="center">
