@@ -6,7 +6,6 @@
 	<b><i>"Master the essentials of network configuration and troubleshooting."</i></b><br>
 </p>
 <p align="center" style="text-decoration: none;">
-    <a href="https://github.com/f-corvaro/NETPRACTICE/blob/main/.extra/en.subject.pdf"><img alt="subject" src="https://img.shields.io/badge/subject-NETPRACTICE-yellow" /></a>
     <a href="https://github.com/f-corvaro/NETPRACTICE"><img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/f-corvaro/NETPRACTICE?color=blueviolet" /></a>
     <a href="https://github.com/f-corvaro/NETPRACTICE"><img alt="Code language count" src="https://img.shields.io/github/languages/count/f-corvaro/NETPRACTICE?color=yellow" /></a>
     <a href="https://github.com/f-corvaro/NETPRACTICE"><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/f-corvaro/NETPRACTICE?color=blueviolet" /></a>
@@ -36,7 +35,6 @@
     <a href="#levels-explanation">Levels explanation</a><br>
     <a href="#evaluation-process">Evaluation Process</a><br>
     <a href="#peer-evaluations">Peer-Evaluations</a><br>
-    <a href="#correction-sheet">Correction sheet</a><br>
     <a href="#developed-skills">Developed Skills</a><br>
     <a href="#references">References</a><br>
     <a href="#support-and-contributions">Support and Contributions</a><br>
@@ -593,20 +591,6 @@ scale=2
 ```
 
 </p>
-
-
-### Correction sheet
-
-<p align="center">
-<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://github.com/f-corvaro/NETPRACTICE/blob/main/.extra/.cs/cs1.png">
-</p>
-<p align="center">
-<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://github.com/f-corvaro/NETPRACTICE/blob/main/.extra/.cs/cs2.png">
-</p>
-<p align="center">
-<a href="https://github.com/f-corvaro/NETPRACTICE"><img width="650" src="https://github.com/f-corvaro/NETPRACTICE/blob/main/.extra/.cs/cs3.png">
-</p>
-<br>
 
 ## Developed Skills
 
